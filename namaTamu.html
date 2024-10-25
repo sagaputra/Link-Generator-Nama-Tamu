@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Link Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://raw.githubusercontent.com/sagaputra/Wedding-Fredy-Fivy/main/assets/images/My Logo web.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      type="image/png"
+      href="https://raw.githubusercontent.com/sagaputra/Wedding-Fredy-Fivy/main/assets/images/My Logo web.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://raw.githubusercontent.com/sagaputra/Wedding-Fredy-Fivy/main/assets/images/My Logo web.png"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        background: #f4efe3;
+        color: #333;
+        padding: 20px;
+      }
+
+      .container {
+        background-color: #fffaf0;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+      }
+
+      h2,
+      h3 {
+        margin: 0;
+        color: #333;
+      }
+
+      h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 1.5em;
+        margin-bottom: 15px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 12px;
+        margin: 12px 0;
+        border: 1px solid #e0d9c9;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        border-color: #d4a373;
+      }
+
+      #generatedLink {
+        padding: 12px;
+        background-color: #fdf6e3;
+        border: 1px solid #e0d9c9;
+        border-radius: 8px;
+        color: #d4a373;
+        font-weight: bold;
+        word-wrap: break-word;
+        margin-top: 10px;
+        font-size: 0.9em;
+      }
+
+      .copy-btn {
+        margin-top: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #d4a373;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .copy-btn:hover {
+        background-color: #b88b58;
+      }
+
+      /* Mobile-friendly adjustments */
+      @media (max-width: 480px) {
+        h2 {
+          font-size: 1.2em;
+        }
+        input[type="text"] {
+          font-size: 14px;
+        }
+        .copy-btn {
+          font-size: 14px;
+          padding: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2><i class="fas fa-user"></i> Masukkan Nama Tamu:</h2>
+      <input
+        type="text"
+        id="namaTamu"
+        placeholder="Masukkan nama tamu"
+        oninput="updateLink()"
+      />
+
+      <h3>Link yang bisa dicopy:</h3>
+      <p id="generatedLink">
+        https://sagaputra.github.io/Wedding-Fredy-Fivy/?to=
+      </p>
+      <button class="copy-btn" onclick="copyLink()">
+        <i class="fas fa-clipboard"></i> Copy Link
+      </button>
+    </div>
+
+    <script>
+      function updateLink() {
+        const namaTamu = document.getElementById("namaTamu").value;
+        const encodedNamaTamu = encodeURIComponent(namaTamu);
+        const linkElement = document.getElementById("generatedLink");
+        linkElement.textContent = `https://sagaputra.github.io/Wedding-Fredy-Fivy/?to=${encodedNamaTamu}`;
+      }
+
+      function copyLink() {
+        const linkText = document.getElementById("generatedLink").textContent;
+        navigator.clipboard
+          .writeText(linkText)
+          .then(() => {
+            alert("Link berhasil disalin!");
+          })
+          .catch((err) => {
+            console.error("Gagal menyalin link: ", err);
+          });
+      }
+    </script>
+  </body>
+</html>
